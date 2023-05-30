@@ -20,14 +20,14 @@ const Navbar = () => {
                     <label tabIndex={0} className="btn btn-ghost">
                         <img src={logo} className='w-8 h-8' alt="" />
                     </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-black font-semibold lg:hidden">
                         {navItems}
                     </ul>
                 </div>
                 <a className="btn btn-ghost normal-case text-xl">Bistro Boss</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu text-black font-semibold menu-horizontal px-1">
                     {navItems}
                 </ul>
             </div>
