@@ -9,8 +9,10 @@ const Navbar = () => {
         <React.Fragment>
             <Link to='/' className='mr-3'>Home</Link>
             <Link to='/menu' className='mr-3'>Our Menu</Link>
-            <Link to='/shop' className='mr-3'>Our Shop</Link>
+            <Link to='/order/pizza' className='mr-3'>Our Shop</Link>
             <Link to='/about' className='mr-3'>About Us</Link>
+            <Link to='/login' className='mr-3'>Login</Link>
+            <Link to='/registration' className='mr-3'>Register</Link>
         </React.Fragment>
 
     return (
