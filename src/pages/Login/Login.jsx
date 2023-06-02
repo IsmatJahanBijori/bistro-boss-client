@@ -8,6 +8,7 @@ import {
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 const Login = () => {
   // const captchaRef = useRef(null);
   const navigate = useNavigate();
@@ -108,9 +109,10 @@ const Login = () => {
                 />
               </div>
             </form>
-            <p>
+            <p className="text-center">
               new? <Link to="/registration">Register</Link>
             </p>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>

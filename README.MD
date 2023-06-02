@@ -9,3 +9,5 @@
 ### npm install react-icons --save
 
 ### reduce use kora hoiche
+
+### social login korte gele jeno same user barbar database e add na hoy seta kora hoiche. existing user k find kora hoiche server side e 

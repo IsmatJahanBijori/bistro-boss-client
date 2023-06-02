@@ -4,6 +4,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const Registration = () => {
   const { signUp, updateUserProfile } = useContext(AuthContext);
@@ -28,7 +29,6 @@ const Registration = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
@@ -39,15 +39,32 @@ const Registration = () => {
         console.log(result.user);
         updateUserProfile(data.name, data.photo)
           .then(() => {
-            console.log("user profile updated");
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "User created successfully.",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate("/");
+            // console.log("user profile updated");
+            const saveUser={
+              name: data.name,
+              email:data.email
+            }
+            fetch('http://localhost:5000/users',
+            {
+              method: 'POST',
+              headers:{
+                'content-type': 'application/json'
+              },
+              body: JSON.stringify(saveUser)
+            }).then(res=>res.json()).then(data=>{
+              console.log(data)
+              if(data.insertedId){
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "User created successfully.",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+            })
+          
           })
           .catch((err) => console.log(err.message));
       })
@@ -152,6 +169,7 @@ const Registration = () => {
             <p>
               have an account? <Link to="/login">Login</Link>
             </p>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>
