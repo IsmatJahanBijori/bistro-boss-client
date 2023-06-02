@@ -5,3 +5,5 @@
 ### https://swiperjs.com/react
 
 ### https://github.com/rrutsche/react-parallax
+
+### npm install react-icons --save

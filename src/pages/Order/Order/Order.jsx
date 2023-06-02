@@ -23,7 +23,7 @@ const Order = () => {
     const soup = menu.filter(item => item.category === 'soup')
     const dessert = menu.filter(item => item.category === 'dessert')
     const drinks = menu.filter(item => item.category === 'drinks')
-    console.log(drinks)
+    // console.log(drinks)
     return (
         <section>
             <Helmet><title>Shop</title></Helmet>
@@ -38,7 +38,6 @@ const Order = () => {
                         <Tab>Dessert</Tab>
                         <Tab>Drinks</Tab>
                     </TabList>
-
 
                     <TabPanel>
                         <OrderTab items={pizza}></OrderTab>
