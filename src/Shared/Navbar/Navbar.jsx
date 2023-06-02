@@ -4,10 +4,11 @@ import logo from "../../assets/logo.png";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-
+    const [cart] = useCart();
     const handleLogout = () => {
         logOut()
             .then(() => { })
@@ -28,10 +29,10 @@ const Navbar = () => {
             <Link to="/about" className="mr-3">
                 About Us
             </Link>
-            <Link to="/about" className="mr-3">
+            <Link to="/dashboard/myCart" className="mr-3">
                 <button className="btn">
-                    <FaShoppingCart/>
-                    <div className="badge badge-secondary ml-2">+0</div>
+                    <FaShoppingCart />
+                    <div className="badge badge-secondary ml-2">+{cart?.length||0}</div>
                 </button>
             </Link>
             {user ? (

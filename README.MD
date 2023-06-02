@@ -7,3 +7,5 @@
 ### https://github.com/rrutsche/react-parallax
 
 ### npm install react-icons --save
+
+### reduce use kora hoiche

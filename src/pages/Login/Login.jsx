@@ -98,8 +98,10 @@ const Login = () => {
                 />
               </div>
               <div className="form-control mt-6">
+            
                 <input
-                  disabled={disabled}
+                  disabled={false}
+                  //TODO: make this disabled
                   type="submit"
                   className="btn btn-primary"
                   value="Login"

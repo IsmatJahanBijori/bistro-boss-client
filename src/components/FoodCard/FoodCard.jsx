@@ -1,28 +1,36 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import useCart from "../../hooks/useCart";
 
 const FoodCard = ({ item }) => {
-    const { name, image, price, recipe } = item;
+    const { _id, name, image, price, recipe } = item;
     const { user } = useContext(AuthContext)
-    const navigate=useNavigate()
+    const navigate = useNavigate()
+    const location = useLocation()
+    const [, refetch]=useCart()
     const handleAddToCart = (item) => {
-        // console.log(item);
+        console.log(item);
 
         // user thake
-        if (user) {
+        if (user && user.email) {
+            const cartItem = { 
+                menuItemId: _id, 
+                name, image, price, 
+                email:user.email }
             fetch('http://localhost:5000/carts', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify(item)
+                body: JSON.stringify(cartItem)
             })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
                     if (data.insertedId) {
+                        refetch()
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -38,7 +46,7 @@ const FoodCard = ({ item }) => {
         else {
             Swal.fire({
                 title: 'You have to login first',
-                
+
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -46,7 +54,7 @@ const FoodCard = ({ item }) => {
                 confirmButtonText: 'Login Now'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate('/login')
+                    navigate('/login', { state: { from: location } })
                 }
             })
         }
